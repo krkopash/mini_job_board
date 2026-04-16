@@ -70,43 +70,45 @@ export default function RecruiterDashboard() {
       <div style={{ display: 'flex', justifyContent: "center", width: "100%" }}>
         <Navbar />
       </div>
-      <h2 style={{ color: "green"}}>Recruiter Dashboard</h2><hr/>
-      <Link href="/recruiter/dashboard" style={{textDecoration:"none", color:"#ec4426",  textAlign:"right", display:"block",}} >◀ Back</Link>
-      <div style={{ display: 'flex', justifyContent: "center", width: "100%" }}>
+      <h2 style={{ color: "green" }}>Recruiter Dashboard</h2><hr />
+      <Link href="/recruiter/dashboard" style={{ textDecoration: "none", color: "#ec4426", textAlign: "right", display: "block", }} >◀ Back</Link>
+      {/* <div style={{ display: 'flex', justifyContent: "flex-start", width: "100%" }}> */}
+      <div >
         <div>
           <div>
-            
-            <h2 style={{ color: "green", textAlign:"center", alignItems:"center" }}>All posted jobs</h2>
-          
-<br/>            <div style={{backgroundColor:"#e7f5ec", padding:30, borderRadius:"5%"}}>
-              <div>
+
+            <h2 style={{ color: "green", textAlign: "center", alignItems: "center" }}>All posted jobs</h2>
+
+            <br />
+            <div style={{ padding: 30}}>
+              <div style={{ display: "flex", flexWrap: "wrap" , justifyContent : "space-around",padding:"10px"}}>
                 {jobs.map((job) => (
-                  <div key={job._id} className="card">
-                    <div>
-                      <div><hr/>
-                        <h3 style={{ color: "green"}}>• {job.title}</h3>
-                        <p className="text-sub">location: {job.location} • <span>Salary: {job.salaryRange}</span></p>
-                        <p style={{color:"gray"}}>job description: <span>{job.description}</span></p>
+                  <div>
+                    <div key={job._id} className="card" style={{ border: "1px solid #000", padding:"10px" , borderRadius:"5%"}}>
+                      <div>
+                        <div>
+                          <h3 style={{ color: "green" }}>• {job.title}</h3>
+                          <p className="text-sub">location: {job.location} • <span>Salary: {job.salaryRange}</span></p>
+                          <p style={{ color: "gray" }}>job description: <span>{job.description}</span></p>
+                        </div>
+                        <span className={`${job.closed ? 'closed' : 'active'}`} style={{ color: "#bb0b0b" }}>
+                          {job.closed ? 'Closed' : 'Active'}
+                        </span>
                       </div>
-                      <span className={`${job.closed ? 'closed' : 'active'}`} style={{color:"#bb0b0b"}}>
-                        {job.closed ? 'Closed' : 'Active'}
-                      </span>
-                    </div>
-                    <div>
-
-
-                      <button style={{backgroundColor:"gray", color:"white", padding:10, marginRight:10, borderRadius:"30%"}} onClick={() => startEdit(job)}>Edit</button>
-                      <button onClick={() => handleClose(job._id, job.closed)} style={{backgroundColor:"lightcoral", color:"black", padding:10, marginRight:200, borderRadius:"30%"}}>
-                        {job.closed ? "Reopen" : "Close"}
-                      </button>
-                      <a href={`/recruiter/dashboard/applicants/${job._id}`} style={{textDecoration:"none", color:"lightseagreen"}} >
-                        Applicants →
-                      </a>
+                      <div>
+                        <button style={{ backgroundColor: "gray", color: "white", padding: 10, marginRight: 10, borderRadius: "30%" }} onClick={() => startEdit(job)}>Edit</button>
+                        <button onClick={() => handleClose(job._id, job.closed)} style={{ backgroundColor: "lightcoral", color: "black", padding: 10, marginRight: 200, borderRadius: "30%" }}>
+                          {job.closed ? "Reopen" : "Close"}
+                        </button>
+                        <a href={`/recruiter/dashboard/applicants/${job._id}`} style={{ textDecoration: "none", color: "lightseagreen" }} >
+                          Applicants →
+                        </a>
+                      </div>
                     </div>
                   </div>
                 ))}
                 {jobs.length === 0 && <p className="text-sub">No jobs posted yet.</p>}
-              </div>  
+              </div>
             </div>
           </div>
         </div>
