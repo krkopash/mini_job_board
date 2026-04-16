@@ -1,5 +1,9 @@
 ## Mini Job Board — Recruiters Post, Candidates Apply 
 
+env variable: 
+MONGO_URI='mongodb+srv://krishna:<db_password>@cluster0.xsxwwrj.mongodb.net/?appName=Cluster0'
+JWT_TOKEN="mysecretkey"
+
 ## Getting Started
 
 For starts front-end:
